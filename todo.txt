@@ -1,0 +1,40 @@
+### WIP ###
+
+Popup notification
+Hover auf Spieler => Charktername anzeigen
+Live-Update der Charakter-Ansicht
+Live-Video-Stream
+Würfel verbesserung
+    - Mehrere Würfel auf einmal
+    - Modifier
+
+### Done ###
+
+Fix Bug mit falschen Grundwerten (BaseValue) und Attributen (Attributes)
+Leere Chatnachrichten nicht mehr sendbar
+Chatnachrichten usw. sollen kein requestFocus() auslösen
+Menüleiste mit Aktionen eingeführt
+ - Shortcuts refferenzieren diese Menüleiste
+ - mnemonic parsing möglich (ALT zur Auswahl)
+Konfigurationen
+ - Charakter Speicherorte eintragen
+ - Charaktere automatisch laden
+ - Ordner auch eintragbar
+ - Der Ordner in dem die Applikation gestartet wird, ist standardmäßig eingetragen
+Bei ungespeicherten Änderungen in den Notizen confirmation
+ - Ja => Speichere Änderungen
+ - Nein => Nicht speichern
+ - Abbrechen => Nicht schließen
+Automatische Client Updates
+Lautstärke ab < 20% wird in 1% Schritten geregelt.
+Attribute/Grundwerte als Tab in der zentralen TabPane
+Spieler-Ansicht auch in der zentralen TabPane#br#In der Teilnehmer-Liste wird nun immer auch direkt der Charakter-Name angezeigt
+
+
+############# Neu (unreleased)
+
+11:Popupnotification Support hinzugefügt (noch nicht vollständig implementiert). Popups werden bei Verbindungs-Aufbau und -Abbruch angezeigt.#br#Besseres Design der detailierten Spieleransicht#br##br#All the notes!#br#Es können nun mehrere Notizen zu jedem Charakter hinzugefügt werden. Dabei gilt:#br# - Notizen haben Einstellungen:#br#    - Sichtbarkeit: private, gmOnly (standard) und public#br#    - Name: Wie heißt die Notiz#br# - Ein Charakter kann eine beliebige Anzahl an Notizen haben#br##br#Klarstellung und vereinheitlichung der Namens-Konventionen:#br# - Grundwerte umbenannt in Attribute#br# - Attribute umbenannt in Fertigkeiten#br#Kleiner Schönheitskorrekturen#br##br#Happy PNP
+
+############ Abschluss Nachricht
+
+#br##br#Happy PNP

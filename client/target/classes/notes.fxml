@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab fx:id="showTab" text="Ansehen">
+      <content>
+            <VBox>
+               <children>
+              <AnchorPane fx:id="viewRoot" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <HBox>
+                     <children>
+                        <Button fx:id="storeButton" mnemonicParsing="false" onAction="#store" prefHeight="26.0" prefWidth="2548.0" text="Speichern" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+      </content>
+    </Tab>
+    <Tab fx:id="editTab" text="Bearbeiten">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextArea fx:id="rawInput" prefHeight="302.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+                        <VBox>
+                           <children>
+                              <HBox prefHeight="0.0" prefWidth="0.0">
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <CheckBox fx:id="publicCheckBox" mnemonicParsing="false" text="Öffentlich Sichtbar" />
+                                          <CheckBox fx:id="gmCheckBox" mnemonicParsing="false" text="Für den GM Sichtbar" />
+                                       </children>
+                                    </VBox>
+                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                    <HBox>
+                                       <children>
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <VBox prefHeight="0.0" prefWidth="0.0" VBox.vgrow="ALWAYS" />
+                                                <Label text="Name">
+                                                   <font>
+                                                      <Font name="Khmer OS System" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <VBox prefHeight="0.0" prefWidth="0.0" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <TextField fx:id="notesNameTextField" prefHeight="49.0" prefWidth="171.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Button fx:id="applyButton" mnemonicParsing="false" onAction="#applyAndSwitchView" prefHeight="26.0" prefWidth="2548.0" text="Anwenden" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

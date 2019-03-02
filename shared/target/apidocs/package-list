@@ -1,0 +1,9 @@
+com.github.thorbenkuck.tears.shared
+com.github.thorbenkuck.tears.shared.datatypes
+com.github.thorbenkuck.tears.shared.exceptions
+com.github.thorbenkuck.tears.shared.logging
+com.github.thorbenkuck.tears.shared.messages
+com.github.thorbenkuck.tears.shared.messages.groups
+com.github.thorbenkuck.tears.shared.network
+com.github.thorbenkuck.tears.shared.pipeline
+com.github.thorbenkuck.tears.shared.stream

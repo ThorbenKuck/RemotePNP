@@ -1,0 +1,62 @@
+/*
+ * This file regulates the looks of the window you see, if you join a lobby (so you are a player)
+ *
+ * You may change everything to your liking. If you don't like your result and want to revert it, just delete this file.
+ */
+
+.base_values_list_view {
+    -fx-background-image: url('../images/concrete.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+
+.attributes_list_view {
+    -fx-background-image: url('../images/concrete.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+
+.list-cell {
+    -fx-background-color: null;
+}
+
+.list-cell .label {
+    -fx-text-fill: white;
+}
+
+.list-cell:selected {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.central_tab_pane {
+    -fx-background-image: url('../images/antique.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+     -fx-opacity: 0;
+ }
+
+.tab-pane .tab {
+    -fx-background-color: black;
+}
+
+.tab-pane .tab .label {
+    -fx-text-fill: white;
+}
+
+/* Used, to make the original background of the info-text transparent */
+.attributes_list_view.text-area .scroll-pane .viewport,
+.attributes_list_view.text-area .content {
+    -fx-background-color: null;
+}
+
+.base_values_list_view.text-area .scroll-pane .viewport,
+.base_values_list_view.text-area .content {
+    -fx-background-color: null;
+}

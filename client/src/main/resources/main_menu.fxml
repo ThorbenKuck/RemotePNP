@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane styleClass="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <HBox>
+            <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
+            <Label styleClass="header_label" text="Aktive Sessions">
+               <font>
+                  <Font size="18.0"/>
+               </font>
+            </Label>
+            <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
+         </HBox>
+         <ListView styleClass="active_session_list" fx:id="sessionList" onMouseClicked="#joinMouseClicked" prefHeight="200.0" prefWidth="200.0"
+                   VBox.vgrow="ALWAYS"/>
+         <HBox>
+            <Button styleClass="join_session_button" mnemonicParsing="false" onAction="#joinGameSession" prefWidth="10000.0" text="Beitreten"
+                    HBox.hgrow="ALWAYS"/>
+         </HBox>
+      </VBox>
+   </center>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <TextField styleClass="session_name_text_field" fx:id="gameSessionName" onKeyPressed="#keyPressedOnCreate" promptText="Session Name"/>
+         <Button styleClass="create_session_button" mnemonicParsing="false" onAction="#createSession" prefHeight="26.0" prefWidth="173.0" text="Erstelle"
+                 VBox.vgrow="ALWAYS"/>
+         <TextArea styleClass="info_text" editable="false" prefHeight="321.0" prefWidth="173.0"
+                   text="Du kannst hier eine neue Lobby erstellen. Wähle dafür einen Namen und drücke auf erstellen.&#10;&#10;Du giltst damit allerdings als Spielleiter (GM) und dein Charakter wird nicht weiter beachtet."
+                   wrapText="true"/>
+         <Label fx:id="feedback" prefHeight="38.0" prefWidth="174.0" wrapText="true"/>
+      </VBox>
+   </right>
+</BorderPane>

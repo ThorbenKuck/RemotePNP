@@ -1,0 +1,91 @@
+/*
+ * This file regulates the looks of the first window, upon starting the client, where you select the server, your name
+ * and your character.
+ *
+ * You may change everything to your liking. If you don't like your result and want to revert it, just delete this file.
+ */
+
+.background {
+    -fx-background-image: url('../images/antique.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-size: 900 300;
+}
+
+/* The labels describe the names, related to the inputs. */
+.input-label {
+    -fx-text-fill: black;
+}
+
+/* The whole bar on top of the setup screen */
+.menu_bar {
+    -fx-background-image: url('../images/antique.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 100;
+    /*
+    the border-width and border-color can take up to 4 arguments.
+    those are (in order):
+        top right bottom left
+    so the following
+        0px 4px 0px 4px
+    would create a border with a width of 4 px left and right
+    */
+    -fx-border-width: 0px 0px 4px 0px;
+    -fx-border-color: rgba(89, 58, 39, 0.8);
+}
+
+/* The text of an one item within the menu bar */
+.menu .label {
+    -fx-text-fill: black;
+}
+
+/* What happens if you put your mouse on the menu */
+.menu:hover {
+    -fx-background-color: rgba(89, 58, 39, 0.6);
+}
+
+/* What happens to the text if you put your mouse on the menu */
+.menu:hover .label {
+    -fx-text-fill: white;
+}
+
+/* The text of one specific option within a menu */
+.menu_item .label {
+    -fx-text-fill: black;
+}
+
+/* Any and all text fields */
+.text_field {
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+
+/* The specific text field, where you input your name */
+.username_text_field {
+}
+
+/* The specific text field, where you input the server address */
+.server_text_field {
+}
+
+/* The button, used for logging a user into the server */
+.login_button {
+    -fx-border-color: black;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+
+/* the little feedback, positioned under the login button */
+.feedback_label {
+}
+
+/* The character selection */
+.character_selection_choice_box {
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+
+/* The text of the character selection */
+.character_selection_choice_box .label {
+    -fx-text-fill: black;
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <ListView fx:id="participantsList" onMouseClicked="#gmSelectPlayer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+    </left>
+    <right>
+        <VBox prefHeight="1000.0" BorderPane.alignment="CENTER">
+            <children>
+                <TextArea fx:id="chatMessages" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                <HBox>
+                    <children>
+                        <TextField fx:id="chatInput" onKeyPressed="#actionInChatInput" />
+                        <Button mnemonicParsing="false" onAction="#sendChatMessage" text="Senden" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </right>
+    <bottom>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label prefHeight="14.0" prefWidth="106.0" text="Privater Wurf">
+                            <font>
+                                <Font name="System Bold Italic" size="10.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="privateDiceInput" onKeyPressed="#keyPressedOnPrivateDiceRoll" promptText="Würfle Seiten" />
+                        <Button mnemonicParsing="false" onAction="#privateDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
+                        <Label fx:id="privateDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label text="Öffentlicher Wurf">
+                            <font>
+                                <Font name="System Bold" size="10.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="publicDiceInput" onKeyPressed="#keyPressedOnPublicDiceRoll" promptText="Würfle Seiten" />
+                        <Button mnemonicParsing="false" onAction="#publicDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
+                        <Label fx:id="publicDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            <ListView fx:id="notesListView" onMouseClicked="#actionInNotesView" prefHeight="200.0" prefWidth="200.0" />
+                <ListView fx:id="soundBoardListView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </bottom>
+    <center>
+        <TabPane fx:id="centralTabPane" />
+    </center>
+    <top>
+        <VBox BorderPane.alignment="TOP_LEFT">
+            <children>
+                <MenuBar>
+                    <Menu text="_Charakter">
+                        <MenuItem accelerator="Shortcut+Shift+N" mnemonicParsing="false" onAction="#editNotes" text="Notizen Ändern" />
+                        <MenuItem accelerator="Shortcut+H" mnemonicParsing="false" onAction="#createNewNotes" text="Notiz Hinzufügen" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem accelerator="Shortcut+S" mnemonicParsing="false" onAction="#saveCharacter" text="Speichern" />
+                    </Menu>
+                    <Menu text="_Sound">
+                        <MenuItem accelerator="Shortcut+Minus" mnemonicParsing="false" onAction="#lowerVolume" text="Leiser" />
+                        <MenuItem accelerator="Shortcut+Plus" mnemonicParsing="false" onAction="#higherVolume" text="Lauter" />
+                        <MenuItem accelerator="Shortcut+M" mnemonicParsing="false" onAction="#mute" text="Mute" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem accelerator="Shortcut+K" mnemonicParsing="false" onAction="#killSounds" text="Beende laufende" />
+                        <MenuItem accelerator="Shortcut+O" mnemonicParsing="false" onAction="#mapLocal" text="Map" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem disable="true" mnemonicParsing="false" onAction="#sendSoundToAll" text="Map für alle" />
+                        <MenuItem disable="true" mnemonicParsing="false" onAction="#sendSoundToSpecific" text="Map für einen" />
+                    </Menu>
+                </MenuBar>
+                <ToolBar>
+                    <MenuButton text="_Bild">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#openNewImage" text="Öffnen" />
+                            <SeparatorMenuItem mnemonicParsing="false" />
+                            <MenuItem mnemonicParsing="false" onAction="#sendImageToAll" text="Sende an alle" />
+                            <MenuItem mnemonicParsing="false" onAction="#sendImageToSpecific" text="Sende an einen" />
+                        </items>
+                    </MenuButton>
+                    <Button mnemonicParsing="false" onAction="#newDrawRequested" text="Draw" />
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+</BorderPane>

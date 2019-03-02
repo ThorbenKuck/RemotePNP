@@ -1,0 +1,68 @@
+/*
+ * This file regulates the looks of the first window after connecting to a Server. It contains the currently running sessions.
+ *
+ * You may change everything to your liking. If you don't like your result and want to revert it, just delete this file.
+ */
+
+.background {
+  -fx-background-image: url('../images/antique.jpg');
+  -fx-background-repeat: stretch;
+  -fx-background-position: center center;
+  -fx-background-size: 600 400;
+}
+
+.active_session_list {
+  //-fx-background-image: url('../images/papyrus.jpg');
+  //-fx-background-repeat: stretch;
+  //-fx-background-position: center center;
+  //-fx-background-size: 500 1000;
+  -fx-background-color: transparent;
+}
+
+.button {
+  -fx-border-color: black;
+}
+
+.list-cell {
+  -fx-border-color: black;
+  -fx-border-width: 0px 0px 1px 0px;
+  -fx-background-color: null;
+  -fx-text-fill: white;
+}
+
+.list-cell:selected {
+  -fx-background-color: #2d2018;
+  -fx-text-fill: white;
+}
+
+.info_text {
+  -fx-background-image: url('../images/canvas.jpg');
+  -fx-background-repeat: stretch;
+  -fx-background-position: center center;
+  -fx-background-size: 200 900;
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;
+}
+
+/* Used, to make the original background of the info-text transparent */
+.info_text.text-area .scroll-pane .viewport,
+.info_text.text-area .content {
+  -fx-background-color: null;
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;
+}
+
+.header_label {
+  -fx-text-fill: white;
+}
+
+.join_session_button {
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;
+}
+
+.create_session_button {
+}
+
+.session_name_text_field {
+}

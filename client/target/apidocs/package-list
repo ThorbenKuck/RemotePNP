@@ -1,0 +1,17 @@
+com.gitub.thorbenkuck.tears.client
+com.gitub.thorbenkuck.tears.client.media
+com.gitub.thorbenkuck.tears.client.network
+com.gitub.thorbenkuck.tears.client.network.p2p
+com.gitub.thorbenkuck.tears.client.ui
+com.gitub.thorbenkuck.tears.client.ui.character.presenter
+com.gitub.thorbenkuck.tears.client.ui.character.view
+com.gitub.thorbenkuck.tears.client.ui.gm.presenter
+com.gitub.thorbenkuck.tears.client.ui.gm.view
+com.gitub.thorbenkuck.tears.client.ui.notes.presenter
+com.gitub.thorbenkuck.tears.client.ui.notes.view
+com.gitub.thorbenkuck.tears.client.ui.player.presenter
+com.gitub.thorbenkuck.tears.client.ui.player.view
+com.gitub.thorbenkuck.tears.client.ui.server.presenter
+com.gitub.thorbenkuck.tears.client.ui.server.view
+com.gitub.thorbenkuck.tears.client.ui.setup.presenter
+com.gitub.thorbenkuck.tears.client.ui.setup.view
