@@ -4,6 +4,10 @@
  * You may change everything to your liking. If you don't like your result and want to revert it, just delete this file.
  */
 
+.participants_list_view .list-cell .label {
+    -fx-text-fill: black;
+}
+
 .base_values_list_view {
     -fx-background-image: url('../images/concrete.jpg');
     -fx-background-repeat: stretch;

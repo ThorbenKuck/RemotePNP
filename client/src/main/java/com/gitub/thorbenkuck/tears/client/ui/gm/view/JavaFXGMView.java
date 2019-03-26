@@ -29,10 +29,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -273,16 +270,7 @@ class JavaFXGMView implements GMView {
 
 	}
 
-	@FXML
-	private void openNewImage(Event event) {
-		System.out.println("open image");
-		event.consume();
-
-		FileChooser fileChooser = new FileChooser();
-		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif");
-		fileChooser.getExtensionFilters().add(extFilter);
-
-		File selected = fileChooser.showOpenDialog(stage);
+	private void insertNewImage(File selected) {
 		try {
 			Image image = new Image(new FileInputStream(selected));
 			ImageView imageView = new ImageView(image);
@@ -367,6 +355,19 @@ class JavaFXGMView implements GMView {
 		} catch (FileNotFoundException e) {
 			appendChatMessage("Das Bild " + selected + " konnte nicht geöffnet werden!");
 		}
+	}
+
+	@FXML
+	private void openNewImage(Event event) {
+		System.out.println("open image");
+		event.consume();
+
+		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		File selected = fileChooser.showOpenDialog(stage);
+		insertNewImage(selected);
 	}
 
 	private byte[] currentImageToByte() {
@@ -542,10 +543,10 @@ class JavaFXGMView implements GMView {
 
 	@FXML
 	private void actionInNotesView(MouseEvent mouseEvent) {
-		if(mouseEvent.getButton() == MouseButton.PRIMARY && mouseEvent.getClickCount() == 2) {
+		if (mouseEvent.getButton() == MouseButton.PRIMARY && mouseEvent.getClickCount() == 2) {
 			NotesInformation i = notesListView.getSelectionModel().getSelectedItem();
 
-			if(i != null) {
+			if (i != null) {
 				System.out.println("action in notes view");
 				mouseEvent.consume();
 				editSpecificNotes(i);
@@ -565,9 +566,9 @@ class JavaFXGMView implements GMView {
 
 		TextField textField = new TextField();
 		textField.setOnKeyPressed(e -> {
-			if(e.getCode() == KeyCode.ENTER) {
+			if (e.getCode() == KeyCode.ENTER) {
 				e.consume();
-				if(!textField.getText().isEmpty()) {
+				if (!textField.getText().isEmpty()) {
 					String name = textField.getText();
 					gmPresenter.createNewNotes(name);
 				}
@@ -578,7 +579,7 @@ class JavaFXGMView implements GMView {
 		Button create = new Button("Erstelle");
 		create.setOnAction(e -> {
 			e.consume();
-			if(!textField.getText().isEmpty()) {
+			if (!textField.getText().isEmpty()) {
 				String name = textField.getText();
 				gmPresenter.createNewNotes(name);
 			}
@@ -753,6 +754,33 @@ class JavaFXGMView implements GMView {
 	@Override
 	public void display() {
 		FXUtils.runOnApplicationThread(() -> {
+			scene.setOnDragDropped(e -> {
+				System.out.println("Drag dropped");
+				Dragboard dragboard = e.getDragboard();
+				File file = dragboard.getFiles().get(0);
+				if (dragboard.hasFiles()) {
+					insertNewImage(file);
+					e.setDropCompleted(true);
+				} else {
+					e.setDropCompleted(false);
+				}
+			});
+			scene.setOnDragOver(e -> {
+				Dragboard dragboard = e.getDragboard();
+				File file = dragboard.getFiles().get(0);
+				if (dragboard.hasFiles() &&
+						(file.getName().toLowerCase().endsWith("jpg") || file.getName().toLowerCase().endsWith("png"))) {
+					centralTabPane.setStyle("-fx-border-color: green;" +
+							"-fx-border-width: 5px;" +
+							"-fx-border-style: dotted;");
+					e.acceptTransferModes(TransferMode.COPY);
+				} else {
+					centralTabPane.setStyle("-fx-border-color: red;" +
+							"-fx-border-width: 5px;" +
+							"-fx-border-style: dotted;");
+				}
+			});
+			scene.setOnDragExited(e -> centralTabPane.setStyle("-fx-border-color: white;"));
 			stage.setScene(scene);
 			root.getStylesheets().clear();
 			root.getStylesheets().add(StyleSheetCache.pathToGMView());
@@ -805,7 +833,7 @@ class JavaFXGMView implements GMView {
 					System.out.println("quit session");
 					event.consume();
 					gmPresenter.backToServerView();
-				} else if (event.getCode() == KeyCode.L){
+				} else if (event.getCode() == KeyCode.L) {
 					new NotesListView(gmPresenter.getUser()).show();
 				}
 			}

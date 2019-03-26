@@ -2,8 +2,7 @@ package com.gitub.thorbenkuck.tears.client.ui;
 
 import com.github.thorbenkuck.tears.shared.logging.Logger;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -49,12 +48,14 @@ public class StyleSheetCache {
 	}
 
 	private static void load() {
-		File externalRoot = new File("styles");
-		URL resourcesUrl = StyleSheetCache.class.getClassLoader().getResource("styles/");
 
-		if (resourcesUrl == null) {
+		File externalRoot = new File("styles");
+		InputStream inputStream = StyleSheetCache.class.getClassLoader().getResourceAsStream("styles/");
+
+		if (inputStream == null) {
 			throw new IllegalStateException("Could not locate internal style folder!");
 		} else {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			if(!externalRoot.exists()) {
 				setFromResources();
 				return;
@@ -65,19 +66,21 @@ public class StyleSheetCache {
 					.map(File::getName)
 					.collect(Collectors.toList());
 			try {
-				File resourceFolder = new File(resourcesUrl.toURI());
-				for (File resource : Objects.requireNonNull(resourceFolder.listFiles())) {
-					if (!fileNames.contains(resource.getName())) {
-						File temp = new File(externalRoot, resource.getName());
+				String line;
+				while ((line = reader.readLine()) != null) {
+					Logger.debug("Checking " + line);
+					if (!fileNames.contains(line)) {
+						Logger.debug("Copping file");
+						File temp = new File(externalRoot, line);
 						try {
-							Files.copy(resource.toPath(), temp.toPath());
+							Files.copy(StyleSheetCache.class.getClassLoader().getResourceAsStream("styles/" + line), temp.toPath());
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
 				}
-			} catch (URISyntaxException ignored) {
-				// will not happen..
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 
 			setFromExternalFolder(externalRoot);
