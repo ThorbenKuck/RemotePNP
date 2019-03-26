@@ -49,8 +49,13 @@
     -fx-text-fill: white;
 }
 
+/* Text-Color, after hover on menu */
+.menu:hover .menu-item .label {
+    -fx-text-fill: black;
+}
+
 /* The text of one specific option within a menu */
-.menu_item .label {
+.menu-item .label {
     -fx-text-fill: black;
 }
 
