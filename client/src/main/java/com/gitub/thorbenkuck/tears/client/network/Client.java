@@ -13,6 +13,7 @@ public interface Client {
 	static Client create(String address, int port, Repository repository) {
 		Client client =  new ClientImpl(address, port);
 		ClientSetup.setup(client, repository);
+
 		return client;
 	}
 

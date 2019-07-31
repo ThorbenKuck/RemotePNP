@@ -7,12 +7,12 @@ import com.gitub.thorbenkuck.tears.client.Repository;
 import com.gitub.thorbenkuck.tears.client.media.MediaCenter;
 import com.gitub.thorbenkuck.tears.client.ui.character.presenter.CharacterPresenter;
 import com.gitub.thorbenkuck.tears.client.ui.character.view.CharacterView;
-import com.gitub.thorbenkuck.tears.client.ui.gm.presenter.GMPresenter;
-import com.gitub.thorbenkuck.tears.client.ui.gm.view.GMView;
+import com.gitub.thorbenkuck.tears.client.ui.session.gm.presenter.GMPresenter;
+import com.gitub.thorbenkuck.tears.client.ui.session.gm.view.GMView;
 import com.gitub.thorbenkuck.tears.client.ui.notes.presenter.NotesPresenter;
 import com.gitub.thorbenkuck.tears.client.ui.notes.view.NotesView;
-import com.gitub.thorbenkuck.tears.client.ui.player.presenter.PlayerPresenter;
-import com.gitub.thorbenkuck.tears.client.ui.player.view.PlayerView;
+import com.gitub.thorbenkuck.tears.client.ui.session.player.presenter.PlayerPresenter;
+import com.gitub.thorbenkuck.tears.client.ui.session.player.view.PlayerView;
 import com.gitub.thorbenkuck.tears.client.ui.server.presenter.ServerPresenter;
 import com.gitub.thorbenkuck.tears.client.ui.server.view.ServerView;
 import com.gitub.thorbenkuck.tears.client.ui.setup.presenter.SetupPresenter;
@@ -38,7 +38,7 @@ class MetaControllerSetup {
 		metaController.register(CharacterView.class, () -> CharacterPresenter.create(characterRepository, metaController), CharacterView::create);
 		metaController.register(ServerView.class, () -> ServerPresenter.create(repository, metaController), ServerView::create);
 		metaController.register(GMView.class, () -> GMPresenter.create(repository, characterRepository, metaController), GMView::create);
-		metaController.register(PlayerView.class, () -> PlayerPresenter.create(repository, characterRepository, metaController), presenter -> PlayerView.create(presenter, repository));
+		metaController.register(PlayerView.class, () -> PlayerPresenter.create(repository, characterRepository, metaController), PlayerView::create);
 		metaController.register(NotesView.class, () -> NotesPresenter.create(repository), NotesView::create);
 	}
 

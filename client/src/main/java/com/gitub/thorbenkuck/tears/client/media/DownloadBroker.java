@@ -25,12 +25,10 @@ public class DownloadBroker {
 
 	private final Client client;
 	private final Consumer<String> out;
-	private final Repository repository;
 
-	public DownloadBroker(Client client, Consumer<String> out, Repository repository) {
+	public DownloadBroker(Client client, Consumer<String> out) {
 		this.client = client;
 		this.out = out;
-		this.repository = repository;
 		client.handleSpecific(SoundDownload.class, message -> {
 			Logger.debug("Received UploadAccepted");
 			actuallyReceiveDownload(message.getCore());

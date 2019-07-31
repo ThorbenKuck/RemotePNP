@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
@@ -18,76 +19,80 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
     <left>
-        <ListView styleClass="participants_list_view" fx:id="participantsList" onMouseClicked="#selectPlayer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        <ListView fx:id="participantsList" onMouseClicked="#selectPlayer" prefHeight="200.0" prefWidth="200.0" styleClass="participants_list_view" BorderPane.alignment="CENTER" />
     </left>
     <right>
         <VBox prefHeight="1000.0" BorderPane.alignment="CENTER">
-            <TextArea fx:id="chatMessages" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true"
-                      VBox.vgrow="ALWAYS"/>
+            <TextArea fx:id="chatMessages" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS" />
             <HBox>
-                <TextField fx:id="chatInput" onKeyPressed="#actionInChatInput"/>
-                <Button mnemonicParsing="false" onKeyPressed="#sendChatMessage" text="Senden"/>
+                <TextField fx:id="chatInput" onKeyPressed="#actionInChatInput" />
+                <Button mnemonicParsing="false" onKeyPressed="#sendChatMessage" text="Senden" />
             </HBox>
         </VBox>
     </right>
     <bottom>
         <HBox fx:id="bottomBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <VBox prefHeight="200.0" prefWidth="100.0">
-                <Label text="Würfeln">
-                    <font>
-                        <Font name="System Bold" size="10.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="publicDiceInput" onKeyPressed="#keyPressedOnPublicDiceRoll"
-                           promptText="Würfle Seiten"/>
-                <Button mnemonicParsing="false" onAction="#publicDiceRoll" prefHeight="26.0" prefWidth="103.0"
-                        text="Button"/>
-                <Label fx:id="publicDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-            </VBox>
+         <VBox>
+            <children>
+               <HBox>
+                  <children>
+                     <Label text="Anzahl">
+                        <font>
+                           <Font name="System Bold" size="10.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="rollAmount" promptText="Anzahl" text="1" />
+                  </children>
+               </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <Separator prefWidth="200.0" />
+                      <Label text="Würfeln">
+                          <font>
+                              <Font name="System Bold" size="10.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="publicDiceInput" onKeyPressed="#keyPressedOnPublicDiceRoll" promptText="Würfle Seiten" />
+                      <Button mnemonicParsing="false" onAction="#publicDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
+                      <Label fx:id="publicDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </VBox>
+            </children>
+         </VBox>
             <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
-                <ListView fx:id="notesListView" onMouseClicked="#actionInNotesView" prefHeight="200.0"
-                          prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+                <ListView fx:id="notesListView" onMouseClicked="#actionInNotesView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             </HBox>
         </HBox>
     </bottom>
     <center>
-        <SplitPane dividerPositions="0.24093816631130063" orientation="VERTICAL" BorderPane.alignment="CENTER">
-            <TabPane styleClass="central_tab_pane" fx:id="centralTabPane" minHeight="40.0" prefHeight="603.0" prefWidth="360.0"
-                     tabClosingPolicy="UNAVAILABLE"/>
+        <SplitPane dividerPositions="0.5739514348785872" orientation="VERTICAL" BorderPane.alignment="CENTER">
+            <TabPane fx:id="centralTabPane" minHeight="40.0" prefHeight="603.0" prefWidth="360.0" styleClass="central_tab_pane" tabClosingPolicy="UNAVAILABLE" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                 <SplitPane dividerPositions="0.5" prefHeight="200000.0" prefWidth="200000.0" HBox.hgrow="ALWAYS">
                     <VBox>
                         <children>
                             <HBox VBox.vgrow="ALWAYS">
                                 <children>
-                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
-                                    <Label prefHeight="16.0" prefWidth="81.0" text="Attribute"
-                                           textAlignment="CENTER" HBox.hgrow="ALWAYS"/>
-                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
+                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="16.0" prefWidth="81.0" text="Attribute" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                 </children>
                             </HBox>
-                            <ListView styleClass="base_values_list_view" fx:id="baseValueListView" onMouseClicked="#baseValueClickHandle"
-                                      prefHeight="200000.0" prefWidth="200.0" HBox.hgrow="ALWAYS"
-                                      VBox.vgrow="ALWAYS"/>
+                            <ListView fx:id="baseValueListView" onMouseClicked="#baseValueClickHandle" prefHeight="200000.0" prefWidth="200.0" styleClass="base_values_list_view" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
                     <VBox>
                         <children>
                             <HBox prefHeight="0.0" prefWidth="0.0" VBox.vgrow="ALWAYS">
                                 <children>
-                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
-                                    <Label prefHeight="16.0" prefWidth="60.0" text="Fertigkeiten"
-                                           textAlignment="CENTER"/>
-                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
+                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                    <Label prefHeight="16.0" prefWidth="60.0" text="Fertigkeiten" textAlignment="CENTER" />
+                                    <HBox prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                 </children>
                             </HBox>
-                            <ListView styleClass="attributes_list_view" fx:id="attributeListView" onMouseClicked="#attributeClickHandle"
-                                      prefHeight="200000.0" prefWidth="200.0" HBox.hgrow="ALWAYS"
-                                      VBox.vgrow="ALWAYS"/>
+                            <ListView fx:id="attributeListView" onMouseClicked="#attributeClickHandle" prefHeight="200000.0" prefWidth="200.0" styleClass="attributes_list_view" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
                 </SplitPane>

@@ -4,6 +4,7 @@ import com.github.thorbenkuck.tears.shared.logging.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Observable;
 
 public class Repository extends Observable {
@@ -24,9 +25,12 @@ public class Repository extends Observable {
 	}
 
 	public <T> T get(Class<T> type) {
+		T t;
 		synchronized (mapping) {
-			return (T) mapping.get(type);
+			t = (T) mapping.get(type);
 		}
+
+		return Objects.requireNonNull(t, "Could not find any instance for " + type.getSimpleName());
 	}
 
 }

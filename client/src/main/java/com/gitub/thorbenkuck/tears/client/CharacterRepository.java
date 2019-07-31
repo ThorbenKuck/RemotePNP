@@ -4,6 +4,8 @@ import com.github.thorbenkuck.tears.shared.Settings;
 import com.github.thorbenkuck.tears.shared.datatypes.Character;
 import com.github.thorbenkuck.tears.shared.logging.Logger;
 
+import java.beans.EventHandler;
+import java.beans.PropertyChangeListener;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;

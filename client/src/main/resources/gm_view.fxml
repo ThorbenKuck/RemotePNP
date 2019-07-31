@@ -37,38 +37,52 @@
     <bottom>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <VBox prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <Label prefHeight="14.0" prefWidth="106.0" text="Privater Wurf">
-                            <font>
-                                <Font name="System Bold Italic" size="10.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="privateDiceInput" onKeyPressed="#keyPressedOnPrivateDiceRoll" promptText="Würfle Seiten" />
-                        <Button mnemonicParsing="false" onAction="#privateDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
-                        <Label fx:id="privateDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <Label text="Öffentlicher Wurf">
-                            <font>
-                                <Font name="System Bold" size="10.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="publicDiceInput" onKeyPressed="#keyPressedOnPublicDiceRoll" promptText="Würfle Seiten" />
-                        <Button mnemonicParsing="false" onAction="#publicDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
-                        <Label fx:id="publicDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Anzahl" />
+                        <TextField fx:id="rollAmount" promptText="Anzahl" text="1" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <Label prefHeight="14.0" prefWidth="106.0" text="Privater Wurf">
+                                        <font>
+                                            <Font name="System Bold Italic" size="10.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="privateDiceInput" onKeyPressed="#keyPressedOnPrivateDiceRoll" promptText="Würfle Seiten" />
+                                    <Button mnemonicParsing="false" onAction="#privateDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
+                                    <Label fx:id="privateDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
+                                        <font>
+                                            <Font size="18.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <Label text="Öffentlicher Wurf">
+                                        <font>
+                                            <Font name="System Bold" size="10.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="publicDiceInput" onKeyPressed="#keyPressedOnPublicDiceRoll" promptText="Würfle Seiten" />
+                                    <Button mnemonicParsing="false" onAction="#publicDiceRoll" prefHeight="26.0" prefWidth="103.0" text="Button" />
+                                    <Label fx:id="publicDiceResult" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER">
+                                        <font>
+                                            <Font size="18.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                            </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
             <ListView fx:id="notesListView" onMouseClicked="#actionInNotesView" prefHeight="200.0" prefWidth="200.0" />
                 <ListView fx:id="soundBoardListView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             </children>

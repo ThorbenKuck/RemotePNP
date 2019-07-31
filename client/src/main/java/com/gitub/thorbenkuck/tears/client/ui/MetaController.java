@@ -18,7 +18,7 @@ public interface MetaController {
 
 	<T extends View> T showSeparate(Class<T> type);
 
-	<T extends View> void show(Class<T> type);
+	<T extends View> T show(Class<T> type);
 
 	<T extends View> void register(Class<T> type, Supplier<Presenter> presenterFactory, Function<Presenter, View> viewFactory);
 

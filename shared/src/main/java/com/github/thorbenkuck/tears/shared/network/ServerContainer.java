@@ -20,6 +20,7 @@ public class ServerContainer {
 
 	public ServerContainer(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
+		serverSocket.setReuseAddress(true);
 		connected.subscribe(this::newConnection);
 	}
 
@@ -41,6 +42,9 @@ public class ServerContainer {
 		while (accepting.get()) {
 			try {
 				Socket socket = serverSocket.accept();
+				socket.setKeepAlive(true);
+				socket.setReuseAddress(true);
+				socket.setTcpNoDelay(true);
 				connected.push(Connection.wrap(socket, this::convert));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -70,13 +74,5 @@ public class ServerContainer {
 
 	public void setObjectDecoder(ObjectDecoder objectDecoder) {
 		this.objectDecoder = objectDecoder;
-	}
-
-	private final class Runner implements Runnable {
-
-		@Override
-		public void run() {
-
-		}
 	}
 }

@@ -100,10 +100,10 @@ class SetupPresenterImpl implements SetupPresenter {
 //					}
 				});
 
-				FXUtils.runOnApplicationThread(() -> Notifications.create()
-						.title("Connected")
-						.text("Verbunden als " + username + " zu " + server)
-						.showConfirm());
+//				FXUtils.runOnApplicationThread(() -> Notifications.create()
+//						.title("Connected")
+//						.text("Verbunden als " + username + " zu " + server)
+//						.showConfirm());
 			}
 		});
 

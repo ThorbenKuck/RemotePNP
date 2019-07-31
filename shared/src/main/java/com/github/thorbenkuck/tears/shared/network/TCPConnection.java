@@ -26,6 +26,7 @@ class TCPConnection implements Connection {
 		this.socket = socket;
 		this.dataInputStream = new DataInputStream(socket.getInputStream());
 		this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+		thread.setPriority(8);
 	}
 
 	@Override

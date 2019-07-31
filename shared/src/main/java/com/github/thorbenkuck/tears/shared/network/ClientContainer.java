@@ -13,6 +13,9 @@ public class ClientContainer {
 
 	public ClientContainer(String address, int port) throws IOException {
 		Socket socket = new Socket(address, port);
+		socket.setKeepAlive(true);
+		socket.setReuseAddress(true);
+		socket.setTcpNoDelay(true);
 		connection = Connection.wrap(socket, this::convert);
 		connection.outputStream().subscribe(this::handleReceive);
 	}

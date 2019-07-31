@@ -1,6 +1,7 @@
 package com.gitub.thorbenkuck.tears.server;
 
 import com.github.thorbenkuck.tears.shared.messages.ChatMessage;
+import com.github.thorbenkuck.tears.shared.messages.ChatMessageResponse;
 import com.github.thorbenkuck.tears.shared.messages.DisplayNotes;
 import com.github.thorbenkuck.tears.shared.messages.PlaySound;
 import com.gitub.thorbenkuck.tears.server.network.ServerUser;
@@ -37,8 +38,7 @@ public class ChatDistribution {
 		if (chatMessage.getMsg().startsWith("/")) {
 			handleCommand(chatMessage.getMsg(), origin, gameSession);
 		} else {
-			String newMessage = "[" + origin.toShared().getUserName() + "]: " + chatMessage.getMsg();
-			gameSession.publish(new ChatMessage(newMessage, gameSession.toShared()));
+			gameSession.publish(new ChatMessageResponse(new ChatMessage(chatMessage.getMsg(), gameSession.toShared()), origin.toShared()));
 		}
 	}
 

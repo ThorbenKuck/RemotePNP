@@ -125,7 +125,8 @@ class MetaControllerImpl implements MetaController {
 	}
 
 	@Override
-	public <T extends View> void show(Class<T> type) {
+	public <T extends View> T show(Class<T> type) {
+		CompletableFuture<T> completableFuture = new CompletableFuture<>();
 		FXUtils.runOnApplicationThread(() -> {
 			Objects.requireNonNull(type, "ViewType must not be null!");
 			if(mainStage.get() == null) {
@@ -133,9 +134,16 @@ class MetaControllerImpl implements MetaController {
 				createNewMainStage();
 			}
 			handleCurrentView();
-			View view = createAndShowNewView(type, mainStage.get());
+			T view = createAndShowNewView(type, mainStage.get());
 			setCurrentView(view);
+			completableFuture.complete(view);
 		});
+
+		try {
+			return completableFuture.get();
+		} catch (InterruptedException | ExecutionException e) {
+			throw new IllegalStateException("Could not complete showing " + type, e);
+		}
 	}
 
 	private void handleCurrentView() {

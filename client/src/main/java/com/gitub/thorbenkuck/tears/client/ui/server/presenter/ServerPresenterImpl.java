@@ -8,8 +8,8 @@ import com.gitub.thorbenkuck.tears.client.Repository;
 import com.gitub.thorbenkuck.tears.client.network.Client;
 import com.gitub.thorbenkuck.tears.client.ui.MetaController;
 import com.gitub.thorbenkuck.tears.client.ui.View;
-import com.gitub.thorbenkuck.tears.client.ui.gm.view.GMView;
-import com.gitub.thorbenkuck.tears.client.ui.player.view.PlayerView;
+import com.gitub.thorbenkuck.tears.client.ui.session.gm.view.GMView;
+import com.gitub.thorbenkuck.tears.client.ui.session.player.view.PlayerView;
 import com.gitub.thorbenkuck.tears.client.ui.server.view.ServerView;
 import com.google.common.eventbus.Subscribe;
 
@@ -67,7 +67,8 @@ class ServerPresenterImpl implements ServerPresenter {
 		if(createSessionResponse.isSuccessful()) {
 			serverView.setFeedback("Die Session " + createSessionResponse.getGameSession().getName() + " wurde erstellt!");
 			repository.add(createSessionResponse.getGameSession());
-			metaController.show(GMView.class);
+			GMView gmView = metaController.show(GMView.class);
+			gmView.getPresenter().setUser(repository.get(User.class));
 		} else {
 			serverView.setFeedback(createSessionResponse.getMessage());
 		}
@@ -78,7 +79,8 @@ class ServerPresenterImpl implements ServerPresenter {
 		if(response.isSuccessful()) {
 			Logger.debug("You are: " + repository.get(User.class));
 			repository.add(response.getGameSession());
-			metaController.show(PlayerView.class);
+			PlayerView playerView = metaController.show(PlayerView.class);
+			playerView.getPresenter().setUser(repository.get(User.class));
 		} else {
 			serverView.setFeedback("Konnte nicht beitreten");
 		}
@@ -87,12 +89,17 @@ class ServerPresenterImpl implements ServerPresenter {
 	@Override
 	public void afterDisplay() {
 		serverView.setTitle(repository.get(User.class).getUserName() + "@" + client.getAddress());
+		try {
+			updateSessionList(repository.get(GameSessionListUpdate.class));
+		} catch(NullPointerException ignored) {
+			// this exception means, that
+			// there is not GameSessionListUpdate
+		}
 	}
 
 	@Override
 	public void setup() {
 		repository.addObserver(observer);
-		updateSessionList(repository.get(GameSessionListUpdate.class));
 	}
 
 	private class GameSessionObserver implements Observer {

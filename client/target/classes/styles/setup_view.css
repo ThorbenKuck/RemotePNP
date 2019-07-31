@@ -49,6 +49,7 @@
     -fx-text-fill: white;
 }
 
+/* Text-Color, after hover on menu */
 .menu:hover .menu-item .label {
     -fx-text-fill: black;
 }

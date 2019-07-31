@@ -12,12 +12,14 @@ public final class PublicRollResponse implements Serializable {
 	private final int sides;
 	private final GameSession gameSession;
 	private static final long serialVersionUID = -7769577537055377841L;
+	private final int amount;
 
-	public PublicRollResponse(User origin, int result, int sides, GameSession gameSession) {
+	public PublicRollResponse(User origin, int result, int sides, GameSession gameSession, int amount) {
 		this.origin = origin;
 		this.result = result;
 		this.sides = sides;
 		this.gameSession = gameSession;
+		this.amount = amount;
 	}
 
 	public User getOrigin() {
@@ -34,6 +36,10 @@ public final class PublicRollResponse implements Serializable {
 
 	public int getSides() {
 		return sides;
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 
 	@Override

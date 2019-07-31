@@ -145,12 +145,18 @@ class ServerSetup {
 			// TODO Security check
 			Optional<ServerGameSession> serverGameSession = gameSessionManagement.getGameSession(message.getCore().getGameSession().getName());
 			serverGameSession.ifPresent(gameSession -> {
-				int result = serverUser.randomNumber(message.getCore().getNumberOfSides());
+				int result = 0;
+				int rolls = message.getCore().getAmountRolls();
+
+				for(int i = 0 ; i < rolls ; i++) {
+					result += serverUser.randomNumber(message.getCore().getNumberOfSides());
+				}
+
 				// Ensure that we only use the
 				// server side objects. We do
 				// not reuse the elements send
 				// by the client!
-				gameSession.publish(new PublicRollResponse(message.getServerUser().toShared(), result, message.getCore().getNumberOfSides(), gameSession.toShared()));
+				gameSession.publish(new PublicRollResponse(message.getServerUser().toShared(), result, message.getCore().getNumberOfSides(), gameSession.toShared(), message.getCore().getAmountRolls()));
 			});
 		});
 	}

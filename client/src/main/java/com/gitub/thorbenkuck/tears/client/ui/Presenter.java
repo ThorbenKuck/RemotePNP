@@ -20,6 +20,8 @@ public interface Presenter {
 	}
 
 	default void display() {
+		setup();
+		getView().setup();
 		Logger.debug("[PRESENTER] Displaying view");
 		getView().display();
 		Logger.debug("[PRESENTER] Executing after display");
